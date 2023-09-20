@@ -1,1 +1,64 @@
-%h1 Hey!
+%nav.bg-dark.border-gray-200.flex.items-center.justify-between.mx-auto.mt-4
+  %a.flex.items-center{href: "/"}
+    = image_tag 'home-logo-2.png', class: 'md:w-28 md:h-14 w-48 h-40'
+    %span.text-4xl.font-semibold.whitespace-nowrap.dark:text-white.ml-5
+      MC Car
+  %button.inline-flex.items-center.p-2.w-10.h-10.justify-center.text-sm.text-gray-500.rounded-lg.md:hidden.hover:bg-gray-100.focus:outline-none.focus:ring-2.focus:ring-gray-200.dark:text-gray-400.dark:hover:bg-gray-700.dark:focus:ring-gray-600{"aria-controls" => "navbar-default", "aria-expanded" => "false", "data-collapse-toggle" => "navbar-default", type: "button"}
+    %span.sr-only Open main menu
+    %svg.w-5.h-5.text-white{"aria-hidden" => "true", fill: "none", viewbox: "0 0 17 14", xmlns: "http://www.w3.org/2000/svg"}
+      %path{d: "M1 1h15M1 7h15M1 13h15", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+  #navbar-default.hidden.w-full.md:block.md:w-auto
+    %ul.font-medium.flex.flex-col.p-4.md:p-0.mt-4.border.border-gray-100.rounded-lg.bg-gray-50.md:flex-row.md:space-x-8.md:mt-0.md:border-0.md:bg-dark
+      %li
+        %a.block.py-2.pl-3.pr-4.text-gray-400.rounded.md:bg-transparent.md:hover:text-blue-500.md:p-0{"aria-current" => "page", href: "#"} Home
+      %li
+        %a.block.py-2.pl-3.pr-4.text-gray-400.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-500.md:p-0{href: "#"}
+          Sobre
+      %li
+        %a.block.py-2.pl-3.pr-4.text-gray-400.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-500.md:p-0{href: "#"}
+          Serviços
+      %li
+        %a.block.py-2.pl-3.pr-4.text-gray-400.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-500.md:p-0{href: "#"}
+          Contato
+      %li
+        %a.block.py-2.pl-3.pr-4.text-gray-400.rounded.hover:bg-gray-100.md:hover:bg-transparent.md:border-0.md:hover:text-blue-500.md:p-0{href: "#"}
+          Login
+
+%hr.w-full.bg-gray-500.h-px.mt-4.mb-16.h-px.border-0
+
+.grid.sm:grid-cols-1.md:grid-cols-2.gap-x-10
+  .columns-1.font-bold.flex.flex-col.justify-between
+    %div
+      %h1.text-5xl.text-gray-100
+        Serviços de Qualidade e Confiança
+    %div
+      .columns-2
+        = image_tag 'home-003-alt.webp', class: 'w-full h-48 object-cover rounded-3xl'
+        = image_tag 'home-004-alt.jpeg', class: 'w-full h-48 object-cover rounded-3xl'
+  .columns-1
+    = image_tag 'home-002-alt.jpeg', class: 'w-full h-96 object-cover rounded-3xl'
+
+.flex.justify-between.mt-12.w-full
+  %div.font-bold.text-2xl{ class: "w-1/3" }
+    A atenção que o seu carro merece
+
+  %div.text-left.ml-5{ class: "w-1/3" }
+    %p
+      A MC Car é uma empresa que atua no ramo de mecânica automotiva, com o
+      objetivo de oferecer serviços de qualidade e confiança para os seus
+      clientes com honestidade e transparência.
+
+  %div.text-right.self-center{ class: "w-1/3" }
+    = button_tag "Agende Aqui", class: "hover:bg-blue-500 hover:text-white bg-white text-dark font-bold py-3 px-10 rounded-full uppercase"
+
+%hr.w-full.bg-gray-500.h-px.mt-12.mb-6.h-px.border-0
+
+.flex.justify-between.w-full.items-center
+  .text-gray-400.text-sm.w-full
+    Todos os direitos reservados &copy MC Car #{Date.today.year}
+
+  .text-right.text-gray-400.text-sm.w-full
+    = link_to "Avenida Independência, 7160 - Vinhedo/SP", "https://maps.app.goo.gl/cnGpfePehW7hgLU16", class: "hover:text-blue-500"
+    %br
+    = phone_to "(19) 3876-3548", class: "hover:text-blue-500"
+

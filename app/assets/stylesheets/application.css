@@ -1,1 +1,17 @@
 /* Application styles */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&family=Raleway:wght@200;400;600&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&family=Raleway:wght@200;400;600&family=Red+Hat+Display:wght@300;400;700&display=swap');
+
+body {
+  /* font-family: 'Montserrat', sans-serif; */
+  /* font-family: 'Raleway', sans-serif; */
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+a, button {
+  transition: color 50ms ease-in-out;
+}

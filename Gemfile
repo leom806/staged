@@ -6,9 +6,10 @@ ruby "3.2.2"
 
 gem "rails", "~> 7.0.8"
 
+gem 'devise'
 gem "bootsnap", require: false
-gem "importmap-rails"
 gem "haml-rails"
+gem "importmap-rails"
 gem "pg", "~> 1.1"
 gem "propshaft"
 gem "puma", "~> 5.0"

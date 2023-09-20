@@ -68,4 +68,7 @@ Rails.application.configure do
 
   # Hot Reload set up
   config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/builds")
+
+  # Devise Set up
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

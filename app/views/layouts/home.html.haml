@@ -14,6 +14,6 @@
 
     %script{ src: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js", defer: true }
 
-  %body.bg-dark
-    %main.container.mx-auto.px-5.text-white.w-full
+  %body.dark:bg-dark
+    %main.container.mx-auto.px-5.dark:text-white.w-full.h-screen.flex.flex-col.justify-between
       = yield

@@ -67,6 +67,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Hot Reload set up
-  config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/images")
   config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/builds")
 end

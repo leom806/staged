@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+  resources :cars
+  resources :companies
   devise_for :users
 
-  root "static#home"
+  authenticate :user do
+    resources :services
+  end
+
+  root "home#index"
 end

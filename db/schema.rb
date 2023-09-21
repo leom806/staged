@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_213614) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_212457) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "brand", null: false
+    t.string "model", null: false
+    t.string "version"
+    t.string "type"
+    t.string "plate", null: false
+    t.integer "mileage", null: false
+    t.integer "year_make"
+    t.integer "year_model"
+    t.string "color", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "car_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -32,6 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_213614) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.integer "role", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

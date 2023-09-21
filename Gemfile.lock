@@ -68,6 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -114,6 +117,8 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
+    heroicon (1.0.0)
+      rails (>= 5.2)
     hotwire-livereload (1.2.3)
       listen (>= 3.0.0)
       rails (>= 6.0.0)
@@ -264,12 +269,14 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  annotate
   bootsnap
   capybara
   devise
   factory_bot_rails
   faker
   haml-rails
+  heroicon
   hotwire-livereload
   importmap-rails
   pg (~> 1.1)

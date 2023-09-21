@@ -9,6 +9,7 @@ gem "rails", "~> 7.0.8"
 gem 'devise'
 gem "bootsnap", require: false
 gem "haml-rails"
+gem "heroicon"
 gem "importmap-rails"
 gem "pg", "~> 1.1"
 gem "propshaft"
@@ -20,6 +21,7 @@ gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 group :development, :test do
+  gem "annotate"
   gem "pry-byebug"
   gem "rspec-rails"
   gem "factory_bot_rails"

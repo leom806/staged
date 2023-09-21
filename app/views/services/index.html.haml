@@ -1,0 +1,29 @@
+%main
+  %h1.text-3xl.text-center.text-gray-700.mb-12 Meus Serviços
+
+  .flex.flex-col.justify-between.w-full
+    - current_user.cars.each do |car|
+      .mx-auto
+        %h3.text-2xl.text-left.text-gray-700.mb-4= car
+
+        - @services.each do |service|
+          = link_to service do
+            .max-w-sm.rounded.overflow-hidden.shadow-sm.w-full.my-2.cursor-pointer.shadow-md.hover:shadow-lg
+              -# = image_tag 'working.jpeg', class: 'w-full h-full'
+              .px-6.py-4
+                .font-bold.text-xl.mb-2= service.name
+                %p.text-gray-700.text-base= service.description
+              .px-6.pt-4.pb-2.flex.items-center.justify-between.align-middle
+                %div
+                  - case service.status
+                  - when 'pending'
+                    = icon 'clock', 'Aguardando', class: 'text-gray-500'
+                  - when 'in_progress'
+                    = icon 'wrench', 'Em Andamento', class: 'text-blue-500'
+                  - when 'done'
+                    = icon 'check-badge', 'Finalizado', class: 'text-green-500'
+                  - when 'canceled'
+                    = icon 'x-circle', 'Cancelado', class: 'text-red-500'
+                %div.text-sm.text-gray-500.hover:text-blue-500
+                  = link_to service do
+                    Ver Detalhes &rarr;

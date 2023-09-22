@@ -3,7 +3,9 @@ class CarsController < ApplicationController
 
   # GET /cars
   def index
-    @cars = Car.all
+    @cars = Car.includes(:services)
+    @cars = @cars.where(user: current_user) unless current_user.admin?
+    @cars = @cars.order(brand: :asc, model: :asc, year_model: :asc)
   end
 
   # GET /cars/1
@@ -43,6 +45,10 @@ class CarsController < ApplicationController
   def destroy
     @car.destroy
     redirect_to cars_url, notice: "Car was successfully destroyed.", status: :see_other
+  end
+
+  def modal
+    @service = Services::Service.find(params[:service_id])
   end
 
   private

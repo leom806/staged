@@ -1,5 +1,9 @@
 class Car < ApplicationRecord
+  self.inheritance_column = nil
+
   belongs_to :user
+
+  has_many :services, class_name: "Services::Service", dependent: :destroy
 
   def to_s
     "#{brand} #{model} #{year_model}"

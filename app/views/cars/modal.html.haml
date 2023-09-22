@@ -1,0 +1,19 @@
+= turbo_frame_tag "modal" do
+  %div{ data: { controller: "cars--modal" }}
+    #backdrop.bg-black.opacity-30.w-full.h-full.fixed.top-0.bottom-0.left-0.right-0
+    .fixed.left-0.right-0.z-50.w-full.p-4.overflow-x-hidden.overflow-y-auto.md:inset-0.max-h-full{tabindex: "-1", class: "top-48 lg:top-1/3"}
+      .relative.w-full.max-w-2xl.max-h-full.m-auto.drop-shadow-md
+        / Modal content
+        .relative.bg-white.rounded-lg.shadow.dark:bg-white
+          / Modal header
+          .flex.items-start.justify-between.p-4.border-b.rounded-t.dark:border-gray-400
+            %h3.text-xl.font-semibold.text-gray-900.dark:text-gray-900
+              Descrição do Serviço
+            = button_tag "", type: "button", class: "text-gray-400 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-whitedata", data: { action: "cars--modal#hideModal" } do
+              %svg.w-3.h-3{"aria-hidden" => "true", fill: "none", viewbox: "0 0 14 14", xmlns: "http://www.w3.org/2000/svg"}
+                %path{d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6", stroke: "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
+              %span.sr-only Fechar
+          / Modal body
+          .p-6.space-y-6
+            %p.text-base.leading-relaxed.text-gray-500.dark:text-gray-900
+              = @service.description

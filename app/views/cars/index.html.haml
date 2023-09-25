@@ -2,22 +2,31 @@
   .flex.flex-row.justify-between.mx-20
     %div
       %h1.text-3xl.text-center.text-gray-900.mb-12.dark:text-white.font-bold
-        Meus Carros
+        - if current_user.admin?
+          - if @customer.blank?
+            Selecione um cliente para ver seus serviços
+          - else
+            Serviços do #{@customer}
+        - else
+          Meus Carros
 
       .mx-auto
         .flex.flex-col.justify-between.w-full
-          - @cars.each do |car|
-            %h3.text-2xl.text-left.text-gray-700.dark:text-white.mb-8
-              .inline-flex.items-center.text-gray-700
-                = icon 'wrench-screwdriver'
-                .ml-2= car
+          - @cars.each_with_index do |car, index|
+            %h3.text-2xl.text-left.text-gray-700.dark:text-white.mb-8{ class: index > 0 && "mt-4" }
+              = link_to car_path(car) do
+                .inline-flex.items-center.text-gray-700.hover:underline
+                  = icon 'wrench-screwdriver'
+                  .ml-2= car
 
-            - car.services.each do |service|
-              = link_to modal_cars_path(service_id: service.id), class: "flex w-full text-left", data: { turbo_frame: 'modal' } do
-                = render "service", service: service
+            - if car.services.exists?
+              - car.services.each do |service|
+                = link_to modal_cars_path(service_id: service.id), class: "flex w-full text-left", data: { turbo_frame: 'modal' } do
+                  = render "service", service: service
+            - else
+              %p.text-gray-600 Quando existir algum serviço registrado para o <strong>#{car}</strong> ele aparecerá aqui.
 
     .h-full.max-w-lg.items-center
-      -# = image_tag 'car-repair.svg', class: ' my-auto'
       = image_tag 'ai-002.png'
 
 = turbo_frame_tag "modal"

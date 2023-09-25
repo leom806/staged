@@ -18,6 +18,13 @@ class User < ApplicationRecord
     customer: 0,
     admin: 1,
   }
+
+  scope :sorted,    -> { order(:name) }
+  scope :customers, -> { where(role: :customer) }
+
+  def to_s
+    name
+  end
 end
 
 # == Schema Information

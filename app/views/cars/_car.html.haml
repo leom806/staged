@@ -1,0 +1,32 @@
+%div{id: "#{dom_id car}"}
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.brand
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.model
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.version
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.type
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.plate
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.mileage
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.year_make
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.year_model
+  %p.my-5
+    %strong.block.font-medium.mb-1:
+    = car.color
+  - if action_name != "show"
+    = link_to "Detalhes", car, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium"
+    = link_to 'Editar', edit_car_path(car), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"
+    %hr.mt-6/

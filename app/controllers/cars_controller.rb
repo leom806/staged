@@ -4,12 +4,23 @@ class CarsController < ApplicationController
   # GET /cars
   def index
     @cars = Car.includes(:services)
-    @cars = @cars.where(user: current_user) unless current_user.admin?
     @cars = @cars.order(brand: :asc, model: :asc, year_model: :asc)
+
+    if current_user.admin?
+      @customers = User.all.customers.sorted
+      @customer = @customers.find(params[:customer_id]) if params[:customer_id].present?
+
+      @cars = @cars.where(user: @customer)
+    else
+      @cars = @cars.where(user: current_user)
+    end
   end
 
   # GET /cars/1
   def show
+    if current_user.admin?
+      redirect_to edit_car_path(@car)
+    end
   end
 
   # GET /cars/new
@@ -59,6 +70,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:brand, :model, :version, :type, :plate, :mileage, :year_make, :year_model, :color)
+      params.require(:car).permit(:brand, :model, :version, :type, :plate, :mileage, :year_make, :year_model, :color, :user_id)
     end
 end

@@ -1,0 +1,49 @@
+= form_with(model: car, class: "contents") do |form|
+  - if car.errors.any?
+    #error_explanation.bg-red-50.text-red-500.px-3.py-2.font-medium.rounded-lg.mt-3
+      %h2
+        = car.errors.count
+        erro(s) ao registrar:
+      %ul
+        - car.errors.each do |error|
+          %li= error.full_message
+
+  .w-full.mt-10
+    = form.label :user_id
+    = form.select :user_id, User.customers.sorted.map { |user| [user, user.id] }, { include_blank: "Selecione um usuário" }, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  .w-full.inline-flex.justify-between.mt-3
+    .w-full.mr-2
+      = form.label :brand
+      = form.text_field :brand, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    .w-full.mr-2
+      = form.label :model
+      = form.text_field :model, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    .w-full
+      = form.label :version
+      = form.text_field :version, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  .w-full.mt-3
+    = form.label :type
+    = form.text_field :type, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .w-full.mt-3
+    = form.label :plate
+    = form.text_field :plate, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+  .w-full.mt-3
+    = form.label :mileage
+    = form.number_field :mileage, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  .w-full.inline-flex.justify-between.mt-3
+    .w-full.mr-2
+      = form.label :year_make
+      = form.number_field :year_make, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+    .w-full
+      = form.label :year_model
+      = form.number_field :year_model, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  .w-full.mt-3
+    = form.label :color
+    = form.text_field :color, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full"
+
+  .inline-flex.mt-10
+    = form.submit "Salvar", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"

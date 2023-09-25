@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :users, only: :edit
+
   authenticate :user do
-    resources :cars, only: :index do
+    resources :cars do
       collection do
         get :modal
       end

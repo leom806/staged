@@ -1,0 +1,39 @@
+.w-full.max-w-lg.mx-auto
+  %h1.font-hairline.mb-6.text-center.text-3xl
+    Acesse sua Área do Cliente
+  %h6.text-center
+    Acompanhe o andamento de seu carro, faça agendamentos, veja o histórico de serviços e muito mais.
+    %h6
+      = form_for(resource,                                             |
+                 as: resource_name,                                    |
+                 url: session_path(resource_name),                     |
+                 html: {                                               |
+                         class: "mb-4 px-8 pt-6 pb-8 rounded" |
+                 }                                                     |
+        ) do |f|                                                       |
+        = devise_simple_error_messages!
+        - if flash.present?
+          .bg-red-100.border-l-4.border-red-500.text-red-700.p-4.mb-4{role: "alert"}
+            - flash.each do |name, msg|
+              = content_tag :p,                          |
+                msg.humanize,                            |
+                id: "flash_#{name}" if msg.is_a?(String) |
+        .mb-4
+          = f.label :email, "Email", class: "block text-gray-700 text-sm font-bold mb-2 dark:text-white"
+          = f.email_field :email, autofocus: true, autocomplete: "email",                                           |
+            class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight foucs:outline-none" |
+        .mb-4
+          = f.label :password, "Senha", class: "block text-gray-700 text-sm font-bold mb-2 dark:text-white"
+          = f.password_field :password,                                                                             |
+            autocomplete: "current-password",                                                                       |
+            class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" |
+        - if devise_mapping.rememberable?
+          .mb-4
+            = f.check_box :remember_me, class: "cursor-pointer mr-2 leading-tight "
+            = f.label :remember_me,                                      |
+              "Mantenha-me conectado",                                   |
+              class: "cursor-pointer align-baseline inline-block text-gray-700 text-sm dark:text-white" |
+        .mb-4
+          = f.submit "Log in",                                                                                                                                                                   |
+            class: "cursor-pointer button hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white bg-gray-900 dark:bg-white text-white dark:text-dark  font-bold py-2 px-4 rounded focus:outline-none w-full" |
+        = render "devise/shared/links"

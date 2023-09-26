@@ -24,6 +24,4 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  car_id      :integer          not null
-#  company_id  :integer          not null
-#  customer_id :integer          not null
 #

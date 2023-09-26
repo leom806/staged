@@ -1,7 +1,19 @@
 class User < ApplicationRecord
+  include PgSearch::Model
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :trackable, :masqueradable
+
+  pg_search_scope :search,
+    against: [:name, :email],
+    associated_against: {
+      cars: [:plate, :brand, :model, :year_make, :year_model, :color],
+    },
+    using: {
+      tsearch: { any_word: true },
+      trigram: { word_similarity: true },
+    }
 
   belongs_to :company, optional: true
 
@@ -20,6 +32,7 @@ class User < ApplicationRecord
   }
 
   scope :sorted,    -> { order(:name) }
+  scope :deep,      -> { includes(:cars) }
   scope :customers, -> { where(role: :customer) }
 
   def to_s

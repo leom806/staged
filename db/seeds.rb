@@ -16,8 +16,21 @@
 
 mc_car = Company.create!(name: "MC Car", key: "mc_car")
 admin = User.create!(email: "admin@staged.com", name: "Administrador", password: "123456", company: mc_car, role: :admin, confirmed_at: Time.now.utc)
+
+customers = []
+30.times do |i|
+  customers << User.new(
+    email: Faker::Internet.email,
+    name: Faker::Name.name,
+    password: "123456",
+    role: :customer,
+    confirmed_at: Time.now.utc
+  )
+end
+User.import!(customers)
+
 customer = User.create!(email: "customer@staged.com", name: "José Silva", password: "123456", role: :customer, confirmed_at: Time.now.utc)
-car = Car.create!(user: customer, brand: "Fiat", model: "Palio", plate: "ABC-1234", mileage: 48321, color: "Branco")
+car = Car.create!(user: customer, brand: "Fiat", model: "Palio", plate: "ABC-1234", mileage: 48321, color: "Branco", year_make: 2008, year_model: 2009)
 
 regular_maintenance = Services::Service.create!({
   name: "Revisão de 50.000km",

@@ -4,6 +4,8 @@ class CustomersController < ApplicationController
   def index
     authorize! :index, User
 
-    @customers = User.all.customers.sorted.page(params[:page])
+    @q = User.customers
+    @q = @q.search(params[:q]) if params[:q].present?
+    @customers = @q.deep.sorted.page(params[:page])
   end
 end

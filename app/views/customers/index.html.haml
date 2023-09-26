@@ -1,6 +1,12 @@
 %main{ data: { controller: "customers/index" }}
-  %h1.text-4xl.text-left.text-gray-900.mb-12.dark:text-white.font-bold
-    Clientes
+  .inline-flex.justify-around.items-center.w-full
+    %h1.text-4xl.text-left.text-gray-900.mb-12.dark:text-white.font-bold
+      Clientes
+
+    .inline-flex.mb-12.ml-auto
+      = form_with url: customers_path, method: :get do |f|
+        = f.search_field :q, value: params[:q], placeholder: "Pesquise por carro ou cliente...", class: "w-64 border-gray-300 dark:bg-gray-700 dark:border-gray-600 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-600 dark:focus:border-blue-600 rounded-md shadow-sm"
+        = f.submit "Pesquisar", class: "ml-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
 
   .relative.overflow-x-auto.shadow-sm
     %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
@@ -15,6 +21,8 @@
           %th.px-6.py-3{scope: "col"}
             E-mail
           %th.px-6.py-3{scope: "col"}
+            Carros
+          %th.px-6.py-3{scope: "col"}
             Ações
       %tbody
         - @customers.each do |customer|
@@ -27,6 +35,10 @@
               = customer
             %td.px-6.py-4
               = customer.email
+            %td.px-6.py-4
+              - customer.cars.each do |car|
+                = link_to car, car_path(car), class: "font-bold hover:text-blue-400"
+                %br
             %td.px-6.py-4.inline-flex.items-center
               = link_to masquerade_path(customer), class: "font-medium text-blue-600 dark:text-blue-500" do
                 = icon 'eye'

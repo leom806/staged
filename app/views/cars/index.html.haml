@@ -9,11 +9,11 @@
           - @cars.each_with_index do |car, index|
             %h3.text-2xl.text-left.text-gray-700.dark:text-white.mb-8{ class: index > 0 && "mt-4" }
               = link_to car_path(car) do
-                .inline-flex.items-center.text-gray-700.hover:underline
+                .inline-flex.items-center.text-gray-700.hover:underline.dark:text-white
                   = icon 'wrench-screwdriver'
                   .ml-2= car
 
-                %hr.w-full.my-2
+                %hr.w-full.my-2.dark:border-gray-400
 
             - if car.services.exists?
               - car.services.each do |service|

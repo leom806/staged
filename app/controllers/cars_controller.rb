@@ -7,7 +7,7 @@ class CarsController < ApplicationController
     authorize! :index, Car
 
     @cars = Car.includes(:services)
-    @cars = @cars.where(user: current_user)
+    @cars = @cars.where(user: filtered_user)
     @cars = @cars.order(brand: :asc, model: :asc, year_model: :asc)
   end
 

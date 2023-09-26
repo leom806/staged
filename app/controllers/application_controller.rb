@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
+
+  def filtered_user
+    @filtered_user ||= current_user.admin? ? params[:user_id] : current_user
+  end
 end

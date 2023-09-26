@@ -1,19 +1,28 @@
 %main{ data: { controller: "cars" }}
   .flex.flex-row.justify-between.mx-0.lg:mx-20
     %div
-      %h1.text-3xl.text-center.text-gray-900.mb-12.dark:text-white.font-bold
+      %h1.text-3xl.text-center.lg:text-left.text-gray-900.mb-12.dark:text-white.font-bold
         Meus Carros
+
+      .text-center
+        - unless @cars.exists?
+          %p.text-gray-600
+            Não há nenhum carro cadastrado para você por enquanto.
 
       .mx-auto
         .flex.flex-col.justify-between.w-full
           - @cars.each_with_index do |car, index|
-            %h3.text-2xl.text-left.text-gray-700.dark:text-white.mb-8{ class: index > 0 && "mt-4" }
+            %h3.inline-flex.text-2xl.text-gray-700.dark:text-white.mb-8{ class: index > 0 && "mt-4" }
               = link_to car_path(car) do
                 .inline-flex.items-center.text-gray-700.hover:underline.dark:text-white
                   = icon 'wrench-screwdriver'
                   .ml-2= car
 
-                %hr.w-full.my-2.dark:border-gray-400
+              - if can?(:create, Car)
+                .ml-auto.inline-flex.items-center
+                  = icon 'plus', '', class: "bg-gray-100 text-gray-400 hover:bg-gray-200 font-bold cursor-pointer h-6 w-6 rounded-full"
+
+            %hr.w-full.mb-8.dark:border-gray-400
 
             - if car.services.exists?
               - car.services.each do |service|
@@ -21,6 +30,10 @@
                   = render "service", service: service
             - else
               %p.text-gray-600 Quando algum serviço for cadastrado para o <strong>#{car}</strong> ele aparecerá aqui.
+
+            - if can?(:create, Service)
+              .m-auto.inline-flex.items-center
+                = icon 'plus', '', class: "bg-gray-100 text-gray-400 hover:bg-gray-200 font-bold cursor-pointer h-9 w-9 rounded-full"
 
     .h-full.max-w-md.items-center.my-auto.ml-20.hidden.lg:flex
       = image_tag 'ai-002.png'

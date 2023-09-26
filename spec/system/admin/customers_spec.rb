@@ -23,7 +23,7 @@ describe "Customers Page", type: :system do
     expect(page).to_not have_content 'Clientes'
 
     expect {
-      visit customers_path
+      2.times { visit customers_path } # First time returns nil, error on second time
     }.to raise_error(CanCan::AccessDenied)
   end
 end

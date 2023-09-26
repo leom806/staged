@@ -20,7 +20,7 @@
                 = link_to modal_cars_path(service_id: service.id), class: "flex w-full text-left", data: { turbo_frame: 'modal' } do
                   = render "service", service: service
             - else
-              %p.text-gray-600 Quando algum serviço for registrado para o <strong>#{car}</strong> ele aparecerá aqui.
+              %p.text-gray-600 Quando algum serviço for cadastrado para o <strong>#{car}</strong> ele aparecerá aqui.
 
     .h-full.max-w-md.items-center.my-auto.ml-20.hidden.lg:flex
       = image_tag 'ai-002.png'

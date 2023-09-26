@@ -60,4 +60,17 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Add Support to Devise
+  # Check out for more: https://github.com/heartcombo/devise/wiki/How-To:-Test-with-Capybara
+  config.include Warden::Test::Helpers
+
+  config.after :each do
+    Warden.test_reset!
+  end
+
+  # Expect syntax only
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end

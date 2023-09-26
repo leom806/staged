@@ -1,0 +1,38 @@
+%main{ data: { controller: "customers/index" }}
+  %h1.text-4xl.text-left.text-gray-900.mb-12.dark:text-white.font-bold
+    Clientes
+
+  .relative.overflow-x-auto.shadow-sm
+    %table.w-full.text-sm.text-left.text-gray-500.dark:text-gray-400
+      %thead.text-xs.text-gray-700.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
+        %tr
+          -# %th.p-4{scope: "col"}
+          -#   .flex.items-center
+          -#     %input#checkbox-all-search.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.dark:ring-offset-gray-800.dark:focus:ring-offset-gray-800.focus:ring-2.dark:bg-gray-700.dark:border-gray-600{type: "checkbox"}/
+          -#     %label.sr-only{for: "checkbox-all-search"} checkbox
+          %th.px-6.py-3{scope: "col"}
+            Cliente
+          %th.px-6.py-3{scope: "col"}
+            E-mail
+          %th.px-6.py-3{scope: "col"}
+            Ações
+      %tbody
+        - @customers.each do |customer|
+          %tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
+            -# %td.w-4.p-4
+            -#   .flex.items-center
+            -#     %input#checkbox-table-search-1.w-4.h-4.text-blue-600.bg-gray-100.border-gray-300.rounded.focus:ring-blue-500.dark:focus:ring-blue-600.dark:ring-offset-gray-800.dark:focus:ring-offset-gray-800.focus:ring-2.dark:bg-gray-700.dark:border-gray-600{type: "checkbox"}/
+            -#     %label.sr-only{for: "checkbox-table-search-1"} checkbox
+            %th.px-6.py-4.font-medium.text-gray-900.whitespace-nowrap.dark:text-white{scope: "row"}
+              = customer
+            %td.px-6.py-4
+              = customer.email
+            %td.px-6.py-4.inline-flex.items-center
+              = link_to masquerade_path(customer), class: "font-medium text-blue-600 dark:text-blue-500" do
+                = icon 'eye'
+              = link_to edit_user_path(customer), class: "font-medium text-blue-600 dark:text-blue-500 ml-2" do
+                = icon 'pencil'
+              = link_to customer, method: :delete, data: { confirm: "Deseja realmente excluir #{customer}?" }, class: "font-medium text-red-600 dark:text-red-500 ml-2" do
+                = icon 'trash'
+
+    = paginate @customers

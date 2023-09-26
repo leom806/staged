@@ -34,7 +34,7 @@ class Ability
 
     can :manage, :all if user.admin?
 
-    can :index, :car, -> (car) { car.user == user }
-    can :read,  :car, -> (car) { car.user == user }
+    can :index, Car,  user: user
+    can :read,  :car, user: user
   end
 end

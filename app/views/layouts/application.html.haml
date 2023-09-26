@@ -13,11 +13,10 @@
     = hotwire_livereload_tags if Rails.env.development?
 
   %body.dark:bg-dark
-    %main#main.container.mx-auto.px-5.dark:text-white.w-full.h-screen.flex.flex-col
+    %main#main.mx-auto.px-5.dark:text-white.w-full.h-screen.flex.flex-col
       .navbar
         = render "shared/navbar"
-      .main.my-auto
-        = yield
+      = yield
       .footer.mt-auto
         = render "shared/footer"
 

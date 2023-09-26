@@ -8,10 +8,12 @@ gem 'rails', '~> 7.0.8'
 
 gem 'cancancan'
 gem 'devise'
+gem 'devise_masquerade'
 gem 'bootsnap', require: false
 gem 'haml-rails'
 gem 'heroicon'
 gem 'importmap-rails'
+gem 'kaminari'
 gem 'pg', '~> 1.1'
 gem 'propshaft'
 gem 'puma', '~> 5.0'

@@ -1,14 +1,8 @@
 %main{ data: { controller: "cars/index" }}
-  .flex.flex-row.justify-between.mx-20
+  .flex.flex-row.justify-between.mx-0.lg:mx-20
     %div
       %h1.text-3xl.text-center.text-gray-900.mb-12.dark:text-white.font-bold
-        - if current_user.admin?
-          - if @customer.blank?
-            Selecione um cliente para ver seus serviços
-          - else
-            Serviços do #{@customer}
-        - else
-          Meus Carros
+        Meus Carros
 
       .mx-auto
         .flex.flex-col.justify-between.w-full
@@ -19,14 +13,16 @@
                   = icon 'wrench-screwdriver'
                   .ml-2= car
 
+                %hr.w-full.my-2
+
             - if car.services.exists?
               - car.services.each do |service|
                 = link_to modal_cars_path(service_id: service.id), class: "flex w-full text-left", data: { turbo_frame: 'modal' } do
                   = render "service", service: service
             - else
-              %p.text-gray-600 Quando existir algum serviço registrado para o <strong>#{car}</strong> ele aparecerá aqui.
+              %p.text-gray-600 Quando algum serviço for registrado para o <strong>#{car}</strong> ele aparecerá aqui.
 
-    .h-full.max-w-lg.items-center
+    .h-full.max-w-md.items-center.my-auto.ml-20.hidden.lg:flex
       = image_tag 'ai-002.png'
 
 = turbo_frame_tag "modal"

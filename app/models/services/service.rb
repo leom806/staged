@@ -11,6 +11,10 @@ class Services::Service < ApplicationRecord
     done: 2,
     canceled: 3,
   }
+
+  def to_s
+    name
+  end
 end
 
 # == Schema Information

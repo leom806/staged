@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_161459) do
     t.integer "service_id", null: false
     t.string "name", null: false
     t.string "description"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

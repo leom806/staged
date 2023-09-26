@@ -4,15 +4,7 @@
     %p.text-gray-700.text-base.dark:text-gray-400= service.description
   .px-6.pt-4.pb-2.flex.items-center.justify-between.align-middle
     %div
-      - case service.status
-      - when 'pending'
-        = icon 'clock', 'Aguardando', class: 'text-gray-500'
-      - when 'in_progress'
-        = icon 'wrench', 'Em Andamento', class: 'text-blue-500'
-      - when 'done'
-        = icon 'check-badge', 'Finalizado', class: 'text-green-500'
-      - when 'canceled'
-        = icon 'x-circle', 'Cancelado', class: 'text-red-500'
+      = service_status_icon service.status
 
     %div.text-sm.text-gray-500.hover:text-blue-500
       Ver Detalhes &rarr;
